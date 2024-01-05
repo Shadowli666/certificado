@@ -20,7 +20,7 @@ return new class extends Migration
 
             /*Relaciones*/
             $table->foreign('person_id')->references('id')->on('personas')->onDelete('cascade');
-            $table->foreign('faculty_id')->references('id')->on('facultads')->onDelete('cascade');
+            $table->foreign('faculty_id')->references('id')->on('facultad')->onDelete('cascade');
             /*Fin de las Relaciones */
             $table->timestamps();
         });

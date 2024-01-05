@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('mname', 100)->nullable()->default('Sample');
             $table->string('lname', 100)->nullable()->default('Sample');
             $table->string('slname', 100)->nullable()->default('Sample');
-            $table->integer('document')->unsigned()->nullable()->default(12);
+            $table->integer('document')->unsigned()->nullable();
             $table->timestamps();
         });
     }
