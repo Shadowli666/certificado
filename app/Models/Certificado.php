@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Models;
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -11,7 +10,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Certificado extends Model
 {
     use HasFactory;
-    use HasUuids;
     /**
      * The primary key associated with the table.
      *
@@ -19,17 +17,11 @@ class Certificado extends Model
      */
     protected $primaryKey = 'id';
     /**
-     * The data type of the auto-incrementing ID.
-     *
-     * @var string
-     */
-    protected $keyType = 'string';
-    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['person_id', 'faculty_id', 'title', 'hours'];
+    protected $fillable = ['faculty_id', 'title', 'hours'];
     /**
      * Indicates if the model should be timestamped.
      *
@@ -41,10 +33,7 @@ class Certificado extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function person(): BelongsTo
-    {
-        return $this->belongsTo(Persona::class, 'person_id', 'id');
-    }
+
     /**
      * Get the faculty that owns the Certificado
      *

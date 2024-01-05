@@ -13,10 +13,19 @@ return new class extends Migration
     {
         Schema::create('persona_certificados', function (Blueprint $table) {
             $table->uuid('id')->primary()->default(DB::raw('(UUID())'));
-            $table->bigInteger('persona_id')->unisgned();
+            $table->bigInteger('person_id')->unsigned();
             $table->bigInteger('certificado_id')->unsigned();
             $table->timestamps();
-        });
+
+            /**
+             * Inicio de las migraciones
+        */
+        $table->foreign('person_id')->references('id')->on('personas')->onDelete('cascade')->onUpdate('cascade');
+        $table->foreign('certificado_id')->references('id')->on('certificados')->onDelete('cascade')->onUpdate('cascade');
+        /**
+         * Fin de las migraciones
+         */
+    });
     }
 
     /**

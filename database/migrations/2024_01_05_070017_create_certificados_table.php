@@ -13,13 +13,10 @@ return new class extends Migration
     {
         Schema::create('certificados', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('person_id')->unsigned();
             $table->bigInteger('faculty_id')->unsigned();
             $table->string('title', 100)->default('Title');
             $table->tinyInteger('hours')->default(40);
-
             /*Relaciones*/
-            $table->foreign('person_id')->references('id')->on('personas')->onDelete('cascade');
             $table->foreign('faculty_id')->references('id')->on('facultad')->onDelete('cascade');
             /*Fin de las Relaciones */
             $table->timestamps();
