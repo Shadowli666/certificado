@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('facultads', function (Blueprint $table) {
+        Schema::create('facultad', function (Blueprint $table) {
             $table->id();
-            $table->string('faculty', 30)->default('Default Faculty Name');
+            $table->string('name', 30)->default('Default Faculty Name');
             $table->timestamps();
         });
     }
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('facultads');
+        Schema::dropIfExists('facultad');
     }
 };
