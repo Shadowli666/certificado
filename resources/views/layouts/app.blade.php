@@ -39,6 +39,9 @@
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="{{route('certificado.index')}}">Certificado</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="{{route('persona.index')}}">Participantes</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
