@@ -36,6 +36,9 @@
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="{{route('facultad.index')}}">Facultad</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="{{route('certificado.index')}}">Certificado</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
