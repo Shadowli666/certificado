@@ -12,7 +12,8 @@ class FacultadController extends Controller
      */
     public function index()
     {
-        //
+        $datos['facultad'] = Facultad::paginate(15);
+        return view('facultad.index',$datos);
     }
 
     /**
@@ -20,7 +21,7 @@ class FacultadController extends Controller
      */
     public function create()
     {
-        //
+        return view('facultad.create');
     }
 
     /**
@@ -29,6 +30,8 @@ class FacultadController extends Controller
     public function store(Request $request)
     {
         //
+        Facultad::insert($request->except('_token'));
+        return redirect('facultad')->with('mensaje','Datos añadidos');
     }
 
     /**
@@ -42,24 +45,28 @@ class FacultadController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(facultad $facultad)
+    public function edit($id)
     {
-        //
+        $facultad = Facultad::findOrFail($id);
+        return view('facultad.edit', compact('facultad'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, facultad $facultad)
+    public function update(Request $request,  $id)
     {
-        //
+        $datosFacultad = request()->except('_token','_method');
+        Facultad::where('id','=',$id)->update($datosFacultad);
+        return redirect('facultad')->with('mensaje','Datos modificados');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(facultad $facultad)
+    public function destroy($id)
     {
-        //
+        Facultad::destroy($id);
+        return redirect('facultad')->with('mensaje','Datos eliminados');
     }
 }
