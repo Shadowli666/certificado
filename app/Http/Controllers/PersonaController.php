@@ -12,7 +12,8 @@ class PersonaController extends Controller
      */
     public function index()
     {
-        //
+        $datos['persona'] = Persona::paginate(20);
+        return view('persona.index',$datos);
     }
 
     /**
@@ -20,7 +21,7 @@ class PersonaController extends Controller
      */
     public function create()
     {
-        //
+        return view('persona.create');
     }
 
     /**
@@ -28,7 +29,8 @@ class PersonaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Persona::insert($request->except('_token'));
+        return redirect('persona')->with('mensaje','Datos añadidos');
     }
 
     /**
@@ -42,24 +44,28 @@ class PersonaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(persona $persona)
+    public function edit($id)
     {
-        //
+        $persona = Persona::findOrFail($id);
+        return view('persona.edit',compact('persona'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, persona $persona)
+    public function update(Request $request, $id)
     {
-        //
+        $datosPersona = request()->except('_token','_method');
+        Persona::where('id','=',$id)->update($datosPersona);
+        return redirect('persona')->with('mensaje','Datos modificados');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(persona $persona)
+    public function destroy($id)
     {
-        //
+        Persona::destroy($id);
+        return redirect('persona')->with('mensaje','Datos eliminados');
     }
 }
