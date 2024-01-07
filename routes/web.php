@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PersonaController;
+use App\Http\Controllers\CertificadoController;
+use App\Http\Controllers\FacultadController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,5 +22,9 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+
+Route::resource('persona', PersonaController::class);
+Route::resource('certificado', CertificadoController::class);
+Route::resource('facultad', FacultadController::class);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
