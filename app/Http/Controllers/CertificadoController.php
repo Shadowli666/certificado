@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Certificado;
+use App\Models\Facultad;
 use Illuminate\Http\Request;
 
 class CertificadoController extends Controller
@@ -12,7 +13,8 @@ class CertificadoController extends Controller
      */
     public function index()
     {
-        //
+        $datos['certificado'] = Certificado::paginate(10);
+        return view('certificado.index',$datos);
     }
 
     /**
@@ -20,7 +22,9 @@ class CertificadoController extends Controller
      */
     public function create()
     {
-        //
+        $certificado = new Certificado();
+        $facultad = Facultad::pluck('name','id');
+        return view('certificado.create',compact('facultad','certificado'));
     }
 
     /**
@@ -28,7 +32,8 @@ class CertificadoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Certificado::insert($request->except('_token'));
+        return redirect('certificado')->with('mensaje','Datos añadidos');
     }
 
     /**
@@ -42,24 +47,29 @@ class CertificadoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Certificado $certificado)
+    public function edit($id)
     {
-        //
+        $certificado = Certificado::findOrFail($id);
+        $facultad = Facultad::pluck('name','id');
+        return view('certificado.edit',compact('facultad','certificado'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Certificado $certificado)
+    public function update(Request $request, $id)
     {
-        //
+        $datosCertificado = request()->except('_token','_method');
+        Certificado::where('id','=',$id)->update($datosCertificado);
+        return redirect('certificado')->with('mensaje','Datos modificados');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Certificado $certificado)
+    public function destroy($id)
     {
-        //
+        Certificado::destroy($id);
+        return redirect('certificado')->with('mensaje','Datos eliminados');
     }
 }
