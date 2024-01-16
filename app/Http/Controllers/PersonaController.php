@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\persona;
+use App\Models\PersonaCertificado;
+use App\Models\Certificado;
 use Illuminate\Http\Request;
 
 class PersonaController extends Controller
@@ -67,5 +69,14 @@ class PersonaController extends Controller
     {
         Persona::destroy($id);
         return redirect('persona')->with('mensaje','Datos eliminados');
+    }
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function asignarCertificado($id)
+    {
+        $persona = Persona::findOrFail($id);
+        $certificado = Certificado::pluck('title','id');
+        return view('persona.assing',compact('certificado','persona'));
     }
 }
