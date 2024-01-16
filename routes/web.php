@@ -27,4 +27,5 @@ Route::resource('persona', PersonaController::class);
 Route::resource('certificado', CertificadoController::class);
 Route::resource('facultad', FacultadController::class);
 
+Route::get('/persona/{persona}/asignarCertificado', [PersonaController::class, 'asignarCertificado']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
