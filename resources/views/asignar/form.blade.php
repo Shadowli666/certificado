@@ -15,28 +15,32 @@
         <div class="mb-3">
             <label for="name" class="form-label">Primer Nombre:</label>
             <input type="text" name="fname" id="fname" class="form-control"
-                value="{{isset($persona->fname)?$persona->fname:old('fname')}}">
+            disabled
+            value="{{isset($person->fname)?$person->fname:old('fname')}}">
         </div>
     </div>
     <div class="col">
         <div class="mb-3">
             <label for="mname" class="form-label">Segundo Nombre:</label>
             <input type="text" name="mname" id="mname" class="form-control"
-                value="{{isset($persona->mname)?$persona->mname:old('mname')}}">
+            disabled
+            value="{{isset($person->mname)?$person->mname:old('mname')}}">
         </div>
     </div>
     <div class="col">
         <div class="mb-3">
             <label for="lname" class="form-label">Primer Apellido:</label>
             <input type="text" name="lname" id="lname" class="form-control"
-                value="{{isset($persona->lname)?$persona->lname:old('lname')}}">
+            disabled
+            value="{{isset($person->lname)?$person->lname:old('lname')}}">
         </div>
     </div>
     <div class="col">
         <div class="mb-3">
             <label for="slname" class="form-label">Segundo Apellido:</label>
             <input type="text" name="slname" id="slname" class="form-control"
-                value="{{isset($persona->slname)?$persona->slname:old('slname')}}">
+            disabled
+            value="{{isset($person->slname)?$person->slname:old('slname')}}">
         </div>
     </div>
 <div class="row">
@@ -44,8 +48,16 @@
         <div class="mb-3">
             <label for="document" class="form-label">Cedula:</label>
             <input type="number" name="document" id="document" class="form-control"
-                value="{{isset($persona->document)?$persona->document:old('document')}}">
+            disabled
+                value="{{isset($person->document)?$person->document:old('document')}}">
         </div>
+        <input type="hidden" value="{{$person->id}}" name="person_id">
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        {{Form::select('certificado_id', $certificado, 0,['class'=>'form-select'])}}
     </div>
 </div>
 <div class="mt-5 text-center">

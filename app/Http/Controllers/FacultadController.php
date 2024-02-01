@@ -29,8 +29,8 @@ class FacultadController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        Facultad::insert($request->except('_token'));
+        $facultad = new Facultad($request->except('_token'));
+        $facultad->save();
         return redirect('facultad')->with('mensaje','Datos añadidos');
     }
 

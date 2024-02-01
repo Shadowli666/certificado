@@ -37,7 +37,7 @@
                     <td class='d-flex'>
                         <a href="{{url('/persona/'.$dato->id).'/edit'}}" class="btn btn-warning"><i
                                 class="fa-solid fa-pen-to-square"></i></a>
-                        <a href="{{url('/persona/'.$dato->id).'/asignarCertificado'}}" class="btn btn-primary"><i
+                        <a href="{{url('/asignar/create/'.$dato->id)}}" class="btn btn-primary"><i
                                     class="fa-solid fa-certificate"></i></a>
                         <form action="{{url('/persona/'.$dato->id)}}" method="post">
                             @csrf

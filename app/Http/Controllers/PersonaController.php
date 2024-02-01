@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\persona;
 use App\Models\PersonaCertificado;
 use App\Models\Certificado;
+use App\Models\Facultad;
 use Illuminate\Http\Request;
 
 class PersonaController extends Controller
@@ -31,7 +32,8 @@ class PersonaController extends Controller
      */
     public function store(Request $request)
     {
-        Persona::insert($request->except('_token'));
+        $persona = new Persona($request->except('_token'));
+        $persona->save();
         return redirect('persona')->with('mensaje','Datos añadidos');
     }
 
@@ -69,14 +71,5 @@ class PersonaController extends Controller
     {
         Persona::destroy($id);
         return redirect('persona')->with('mensaje','Datos eliminados');
-    }
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function asignarCertificado($id)
-    {
-        $persona = Persona::findOrFail($id);
-        $certificado = Certificado::pluck('title','id');
-        return view('persona.assing',compact('certificado','persona'));
     }
 }

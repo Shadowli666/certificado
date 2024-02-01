@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\PersonaCertificado;
+use App\Models\Persona;
+use App\Models\Certificado;
 use Illuminate\Http\Request;
 
 class PersonaCertificadoController extends Controller
@@ -18,9 +20,11 @@ class PersonaCertificadoController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($person_id)
     {
-        //
+        $person = Persona::findOrFail($person_id);
+        $certificado = Certificado::pluck('title','id');
+        return view('asignar.create',compact('person','certificado'));
     }
 
     /**
@@ -28,7 +32,14 @@ class PersonaCertificadoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /**
+         * FIXME:
+         *Se hacen registros repetidos,
+         *validar y comparar para que no se registren dos certificados iguales.
+         */
+        $personaCertificado = new PersonaCertificado($request->except('_token'));
+        $personaCertificado->save();
+        return redirect('persona')->with('mensaje','Datos añadidos');
     }
 
     /**

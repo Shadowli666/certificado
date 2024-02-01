@@ -5,12 +5,12 @@
 @section('content')
     <div class="container-fluid min-vh-100">
         <div class="text-center">
-            <h1>Asignar Certificado a participante</h1>
+            <h1>Asignar Certificado</h1>
         </div>
         <div class="form-container container my-5">
-            <form method="POST" action="{{url('/persona')}}">
+            <form method="POST" action="{{url('/asignar')}}">
                 @csrf
-                @include('persona.form',['modo'=>'Asignar'])
+                @include('asignar.form',['modo'=>'Asignar'])
             </form>
         </div>
     </div>

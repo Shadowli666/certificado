@@ -2,6 +2,7 @@
 
 namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -47,8 +48,8 @@ class PersonaCertificado extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function faculty(): BelongsTo
+    public function certificate(): BelongsTo
     {
-        return $this->belongsTo(Facultad::class, 'faculty_id', 'id');
+        return $this->belongsTo(Certificado::class, 'certificado_id', 'id');
     }
 }

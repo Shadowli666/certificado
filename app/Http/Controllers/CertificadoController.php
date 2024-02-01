@@ -32,7 +32,8 @@ class CertificadoController extends Controller
      */
     public function store(Request $request)
     {
-        Certificado::insert($request->except('_token'));
+        $certificado = new Certificado($request->except('_token'));
+        $certificado->save();
         return redirect('certificado')->with('mensaje','Datos añadidos');
     }
 
