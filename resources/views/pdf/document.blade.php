@@ -7,7 +7,7 @@
     <style>
         html{
             margin: 20px;
-            font-size: 20px
+            font-size: 18px
         }
         body{
             border: solid 1px #aaa;
@@ -28,6 +28,9 @@
             margin-bottom: 20px;
             margin-top: 30px;
         }
+        .course{
+            font-weight: 500;
+        }
         .header{
             text-align: center;
             font-size: 14px;
@@ -41,6 +44,10 @@
         }
         th, td{
             padding: 4;
+        }
+        .small{
+            font-size: 12px;
+            color:#aaa;
         }
     </style>
 </head>
@@ -60,7 +67,7 @@
             <tr><td colspan="2">{{number_format($personaCertificado->person->document,0,".",".")}}</td></tr>
             @endif
             <tr><td colspan="2">Por haber completado en su totalidad el curso de:</td></tr>
-            <tr class="title"><td colspan="2">{{$personaCertificado->certificate->title}}</td></tr>
+            <tr class="title course"><td colspan="2">{{$personaCertificado->certificate->title}}</td></tr>
             <tr><td colspan="2">Por un total de {{$personaCertificado->certificate->hours}} horas</td></tr>
             <tr>
                 <th>_____________________</th>
@@ -75,12 +82,10 @@
                 <td>Vicerector</td>
             </tr>
         </table>
-        <table style="width: 100%" class="text-center">
-
-        </table>
         <div>
             <p>Certificado expedido a la fecha de {{"22/03/2023"}}</p>
-            <p> {{$personaCertificado->id}}</p>
+            <img src="data:image/png;base64, {!! base64_encode(QrCode::format('svg')->size(200)->errorCorrection('H')->generate($personaCertificado->id)) !!}">
+            <p class="small">{{$personaCertificado->id}}</p>
         </div>
     </div>
 </body>
