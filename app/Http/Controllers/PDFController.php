@@ -13,7 +13,6 @@ class PDFController extends Controller
     public function printPDF($id)
     {
         $personaCertificado = PersonaCertificado::where('id',$id)->firstOrFail();
-        $qr = QRCode::generate($personaCertificado->id);
         $pdf = PDF::setOptions(['defaultFont' => 'sans-serif',
             'isHtml5ParserEnabled' => true,
             'isRemoteEnabled' => true])
