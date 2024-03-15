@@ -60,7 +60,9 @@
                         <img width="100px" src="{!! url("/img/logo.png"); !!}">
                     </th>
                     <th>República Bolivariana de Venezuela</th>
-                    <th rowspan="5" style="width: 25%"></th>
+                    <th rowspan="5" style="width: 25%">
+                        <img src="data:image/png;base64, {!! base64_encode(QrCode::format('svg')->size(150)->errorCorrection('H')->generate(url()->full())) !!}">
+                    </th>
                 </tr>
                 <tr>
                     <th colspan="0">Universidad Alonso de Ojeda</th>
@@ -107,7 +109,6 @@
             </table>
             <div>
                 <p>Certificado expedido a la fecha de {{"22/03/2023"}}</p>
-                <img src="data:image/png;base64, {!! base64_encode(QrCode::format('svg')->size(200)->errorCorrection('H')->generate($personaCertificado->id)) !!}">
                 <p class="small">{{$personaCertificado->id}}</p>
             </div>
         </div>
