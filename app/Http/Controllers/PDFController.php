@@ -16,7 +16,7 @@ class PDFController extends Controller
         $pdf = PDF::setOptions(['defaultFont' => 'sans-serif',
             'isHtml5ParserEnabled' => true,
             'isRemoteEnabled' => true])
-        ->loadView('pdf.document', compact('personaCertificado'))->setPaper('a4', 'landscape');;
+        ->loadView('pdf.document', compact('personaCertificado'))->setPaper('a4');;
         return $pdf->stream('document.pdf');
     }
 }
