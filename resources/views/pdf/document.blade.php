@@ -57,7 +57,7 @@
             <thead>
                 <tr>
                     <th rowspan="5" style="width: 25%">
-                        <img width="100px" src="{!! url("/img/logo.png"); !!}">
+                        <img width="100px" src="{!! url('/img/logo.png'); !!}">
                     </th>
                     <th>República Bolivariana de Venezuela</th>
                     <th rowspan="5" style="width: 25%">
@@ -108,7 +108,7 @@
                 </tbody>
             </table>
             <div>
-                <p>Certificado expedido a la fecha de {{"22/03/2023"}}</p>
+                <p>Certificado expedido a la fecha de {{$personaCertificado->created_at}}</p>
                 <p class="small">{{$personaCertificado->id}}</p>
             </div>
         </div>
