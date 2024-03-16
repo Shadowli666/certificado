@@ -33,7 +33,15 @@ class PersonaController extends Controller
     public function store(Request $request)
     {
         $persona = new Persona($request->except('_token'));
-        $persona->save();
+        $rules = [
+            'fname' => ['required','string','max:100'],
+            'mname' => ['required','string','max:100'],
+            'lname' => ['required','string','max:100'],
+            'slname' => ['required','string','max:100'],
+            'document' => ['nullable','integer','max_digits:9','unique:personas'],
+        ];
+        $validated = $request->validate($rules);
+        $persona->create($validated);
         return redirect('persona')->with('mensaje','Datos añadidos');
     }
 

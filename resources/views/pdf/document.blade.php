@@ -57,7 +57,7 @@
             <thead>
                 <tr>
                     <th rowspan="5" style="width: 25%">
-                        <img width="100px" src="{!! url('/img/logo.png'); !!}">
+                        <img width="100px" src="{!! url('/img/logo.png')!!}">
                     </th>
                     <th>República Bolivariana de Venezuela</th>
                     <th rowspan="5" style="width: 25%">

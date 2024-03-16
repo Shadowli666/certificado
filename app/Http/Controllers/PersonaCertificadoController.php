@@ -45,10 +45,15 @@ class PersonaCertificadoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(PersonaCertificado $personaCertificado)
+    public function show(PersonaCertificado $personaCertificado, $person_id)
     {
-        //
-    }
+        $listaCertificados = $personaCertificado::where("person_id",$person_id)->get();
+        if($listaCertificados->isNotEmpty()){
+            return view('asignar.show', compact('listaCertificados'));
+        }else{
+            return redirect('persona')->with('mensaje','No se han asignado certificados a esta persona');
+        }
+    }   
 
     /**
      * Show the form for editing the specified resource.
